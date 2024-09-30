@@ -1,0 +1,32 @@
+{
+    "plugins": [
+        "sort-class-members"
+    ],
+    "rules": {
+        "sort-class-members/sort-class-members": [
+            2,
+            {
+                "order": [
+                    "[properties]",
+                    "[conventional-private-properties]",
+                    "[methods]",
+                    "[conventional-private-methods]"
+                ],
+                "groups": {
+                    "conventional-private-properties": [
+                        {
+                            "name": "/_.+/",
+                            "type": "property"
+                        }
+                    ],
+                    "conventional-private-methods": [
+                        {
+                            "name": "/_.+/",
+                            "type": "method"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
