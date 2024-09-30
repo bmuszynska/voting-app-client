@@ -1,0 +1,5 @@
+<div class="flex-container" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+    <app-new-person (onNewPersonNameProvided)="onAddCandidate($event)" inputLabel="New candidate"
+        label="Candidates"></app-new-person>
+    <app-data-table [dataSource]="candidates" [displayedColumns]="displayColumns" info="Votes"></app-data-table>
+</div>
