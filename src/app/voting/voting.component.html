@@ -1,0 +1,9 @@
+<div class="flex-container" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+    <h2 class="flex-item">Vote!</h2>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+        <app-dropdown (selectionChange)="onVoterSelected($event)" [options]="voters" label="I am"></app-dropdown>
+        <app-dropdown (selectionChange)="onCandidateSelected($event)" [options]="candidates"
+            label="I vote for"></app-dropdown>
+        <button (click)="onVote()" [disabled]="isDisabled()" mat-raised-button>Submit!</button>
+    </div>
+</div>
