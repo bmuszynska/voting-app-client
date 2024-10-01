@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormControl, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -14,10 +15,9 @@ import { AppComponent } from './app.component';
 import { CandidatesComponent } from './candidates/candidates.component';
 import { DataTableComponent } from './data-table/data-table.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
-import { VotersComponent } from './voters/voters.component';
-import { VotingStatsComponent } from './voting-stats/voting-stats.component';
-import { VotingComponent } from './voting/voting.component';
 import { NewPersonComponent } from './new-person/new-person.component';
+import { VotersComponent } from './voters/voters.component';
+import { VotingComponent } from './voting/voting.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { NewPersonComponent } from './new-person/new-person.component';
     VotersComponent,
     CandidatesComponent,
     DataTableComponent,
-    VotingStatsComponent,
     NewPersonComponent
   ],
   imports: [
@@ -47,6 +46,7 @@ import { NewPersonComponent } from './new-person/new-person.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

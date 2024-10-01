@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ICandidate } from './models/candidate';
+import { IVoter } from './models/voter';
+import { VotingAppService } from './voting-app.service';
 
 @Component({
   selector: 'app-root',
@@ -6,53 +9,59 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public candidates: string[] = [
-    "Joker",
-    "Harley Quinn",
-    "Penguin",
-    "Riddler",
-    "Two-Face",
-    "Scarecrow",
-    "Poison Ivy",
-    "Bane",
-    "Mr. Freeze",
-    "Ra's al Ghul"
-  ];
-  public data_candidates = [
-    { name: "Joker", voteCount: 0 },
-    { name: "Harley Quinn", voteCount: 0 },
-    { name: "Penguin", voteCount: 0 },
-    { name: "Riddler", voteCount: 0 },
-    { name: "Two-Face", voteCount: 0 },
-    { name: "Scarecrow", voteCount: 0 },
-    { name: "Poison Ivy", voteCount: 0 },
-    { name: "Bane", voteCount: 0 },
-    { name: "Mr. Freeze", voteCount: 0 },
-    { name: "Ra's al Ghul", voteCount: 0 }
-  ];
-  public data_voters = [
-    { "hasVoted": "true", "name": "Luke Skywalker" },
-    { "hasVoted": "false", "name": "Darth Vader" },
-    { "hasVoted": "true", "name": "Princess Leia" },
-    { "hasVoted": "true", "name": "Han Solo" },
-    { "hasVoted": "true", "name": "Yoda" },
-    { "hasVoted": "false", "name": "Obi-Wan Kenobi" },
-    { "hasVoted": "false", "name": "Chewbacca" },
-    { "hasVoted": "false", "name": "R2-D2" },
-    { "hasVoted": "true", "name": "C-3PO" },
-    { "hasVoted": "true", "name": "Emperor Palpatine" }
-  ];
+  public candidates: ICandidate[] = [];
   public title = 'voting-app-client';
-  public voters: string[] = [
-    "Luke Skywalker",
-    "Darth Vader",
-    "Princess Leia",
-    "Han Solo",
-    "Yoda",
-    "Obi-Wan Kenobi",
-    "Chewbacca",
-    "R2-D2",
-    "C-3PO",
-    "Emperor Palpatine"
-  ];
+  public voters: IVoter[] = [];
+  public votersWhoCanVote: IVoter[] = [];
+
+  constructor(
+    private voteAppService: VotingAppService
+  ) { }
+
+  public addCandidate(name: string) {
+    this.voteAppService.addCandidate(name).subscribe({
+      next: () => {
+        this.getCandidates();
+      }
+    });
+  }
+
+  public addVoter(name: string) {
+    this.voteAppService.addVoter(name).subscribe({
+      next: () => {
+        this.getVoters();
+      }
+    });
+  }
+
+  public getCandidates() {
+    this.voteAppService.getCandidates().subscribe(candidates => {
+      this.candidates = candidates;
+    })
+  }
+
+  public getVoters() {
+    this.voteAppService.getVoters().subscribe(voters => {
+      this.voters = voters;
+      this.votersWhoCanVote = this.voters.filter(voter => voter.hasVoted === false);
+    })
+  }
+
+  public ngOnInit() {
+    this.getCandidates();
+    this.getVoters();
+  }
+
+  public vote(event: any) {
+    this.voteAppService.voterVoted(event.voter).subscribe({
+      next: () => {
+        this.getVoters();
+      },
+    });
+    this.voteAppService.candidateGotVote(event.candidate).subscribe({
+      next: () => {
+        this.getCandidates();
+      },
+    });
+  }
 }

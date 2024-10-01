@@ -1,13 +1,12 @@
 <div class="flex-container" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="15px">
     <div class="flex-item">
-        <app-voting [voters]="voters" [candidates]="candidates"></app-voting>
+        <app-voting (voteClicked)="vote($event)" [candidates]="candidates" [voters]="votersWhoCanVote"></app-voting>
     </div>
-    <div class="flex-item" fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="space-around center">
+    <div class="flex-item" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="8px">
         <h2>Voting App</h2>
-        <div fxLayout="row" fxLayoutGap="12px" fx>
-            <app-voters [voters]="voters"></app-voters>
-            <app-candidates [candidates]="candidates"></app-candidates>
-            <!-- <app-voting-stats [data]="data_voters" [data_columns]="['name', 'hasvoted']" [label]="'voters'"></app-voting-stats> -->
+        <div class="dataDisplay" fxLayout="row" fxLayoutGap="12px">
+            <app-voters (addVoterClicked)="addVoter($event)" [voters]="voters"></app-voters>
+            <app-candidates (addCandidateClicked)="addCandidate($event)" [candidates]="candidates"></app-candidates>
         </div>
     </div>
 </div>
