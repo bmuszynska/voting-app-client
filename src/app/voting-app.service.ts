@@ -23,7 +23,7 @@ export class VotingAppService {
   }
 
   public candidateGotVote(candidate: ICandidate) {
-    return this.http.put(this.candidatesUrl + '/' + candidate.id, {});
+    return this.http.patch(this.candidatesUrl + '/' + candidate.id + '/gotVote', null);
   }
 
   public getCandidates(): Observable<ICandidate[]> {
@@ -35,6 +35,6 @@ export class VotingAppService {
   }
 
   public voterVoted(voter: IVoter) {
-    return this.http.put(this.votersUrl + '/' + voter.id, voter);
+    return this.http.patch(this.votersUrl + '/' + voter.id + '/hasVoted', null);
   }
 }
