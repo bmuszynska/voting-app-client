@@ -1,0 +1,17 @@
+<div class="flex-container" fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+    <h2>{{label}}</h2>
+    <button (click)="showInput()" *ngIf="isButtonVisible()" mat-raised-button>+</button>
+
+    <form (ngSubmit)="onSubmit()" *ngIf="isInputVisible" [formGroup]="voterForm">
+        <mat-form-field class="example-full-width">
+            <mat-label>{{inputLabel}}</mat-label>
+            <input formControlName="personName" matInput>
+            <mat-error *ngIf="personFromControl?.hasError('required')">Name is required</mat-error>
+            <mat-error *ngIf="personFromControl?.hasError('minlength')">Name is too short</mat-error>
+            <mat-error *ngIf="personFromControl?.hasError('maxlength')">Name is too long</mat-error>
+            <mat-error *ngIf="personFromControl?.hasError('pattern')">Only letters are allowed</mat-error>
+        </mat-form-field>
+
+        <button [disabled]="voterForm.invalid" type="submit" mat-raised-button>Add</button>
+    </form>
+</div>
