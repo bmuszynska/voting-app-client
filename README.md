@@ -1,10 +1,15 @@
+![image](https://github.com/user-attachments/assets/f27a9e96-2523-48c5-9467-6e384d494abc)
+![image](https://github.com/user-attachments/assets/951f274f-f7b7-4c0e-aa3d-778e18eca074)
+![image](https://github.com/user-attachments/assets/4f299b5a-b52a-467b-89b3-e99e296bcc51)
+
+
 # VotingAppClient
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `https://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
