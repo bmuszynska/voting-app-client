@@ -8,7 +8,7 @@ import { IVoter } from './models/voter';
   providedIn: 'root'
 })
 export class VotingAppService {
-  private baseUrl: string = "http://localhost:5138/api/";
+  private baseUrl: string = "https://localhost:5138/api/";
   private candidatesUrl: string = this.baseUrl + "Candidates";
   private votersUrl: string = this.baseUrl + "Voters";
 
