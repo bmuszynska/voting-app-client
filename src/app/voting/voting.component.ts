@@ -27,7 +27,7 @@ export class VotingComponent {
 
   public onVote() {
     this.voteClicked.emit({ candidate: this.selectedCandidate as ICandidate, voter: this.selectedVoter as IVoter })
-    //this.ngOnInit();
+    this.ngOnInit();
   }
 
   public onVoterSelected(voter: IPerson) {
